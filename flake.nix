@@ -12,7 +12,7 @@
         inherit system;
       };
     in {
-      devShell.${system} = import ./shell.nix { inherit pkgs; };
+      devShells.${system}.default = import ./shell.nix { inherit pkgs; };
 
       packages.${system} = {
         # Set `timer-app` as the default package
