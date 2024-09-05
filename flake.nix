@@ -1,0 +1,19 @@
+{
+  description = "Python GUI Timer System";
+
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  };
+
+  outputs = { self, nixpkgs }:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+      };
+    in {
+      devShell.${system} = import ./shell.nix { inherit pkgs; };
+
+      packages.${system}.timer-app = import ./package.nix { inherit pkgs; };
+    };
+}
